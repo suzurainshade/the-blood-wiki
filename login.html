@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+ </head>
+  </head>
+  <body>
+   <div class="form-wrapper">
+     <h1>ログイン</h1>
+     <form name="login" id="login" method="post" action="https://script.google.com/macros/s/AKfycby3zcX8Yie_KJT3fZSpA6Zm6P_qk48zYwM7JX9CJqQKGQTAxiOM_rHBGZyI7rTz9P3o/exec">
+       <div class="form-item">
+         <label for="name"></label>
+         <input id="name" type="name" name="name" required="required" placeholder="名前"></input>
+       </div>
+       <div class="form-item">
+         <label for="password"></label>
+         <input id="password" type="password" name="password" required="required" placeholder="パスワード"></input>
+       </div>
+       <div class="button-panel">
+         <input id="event" type="hidden" name="event" value="login"></input>
+         <input name="btn" type="submit" class="button" title="Login" value="Login"></input>
+       </div>
+     </form>
+   </div>
+  <script>
+    // ページ読み込み時に保存された認証情報を確認
+    window.onload = function() {
+      const storedName = localStorage.getItem('username');
+      const storedPassword = localStorage.getItem('password');
+      if (storedName && storedPassword) {
+        // 自動ログインのためのフォームデータを準備
+        const form = document.getElementById('loginForm');
+        document.getElementById('event').value = 'auto-login';
+        document.getElementById('name').value = storedName;
+        document.getElementById('password').value = storedPassword;
+        form.submit();
+      }
+    };
+  </script>
+ </body>
+</html>
